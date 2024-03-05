@@ -15,37 +15,27 @@ export async function POST(request: NextRequest, response: NextResponse): Promis
 }
 
 function findBestMatches(word: string, dictionary: string[]): string[] {
-    // Initialize a set to store unique best matches
     const uniqueMatches = new Set<string>();
 
-    // Initialize variable to keep track of the best score
     let bestScore: number = 0;
 
-    // Loop through each word in the dictionary
     dictionary.forEach(dictWord => {
-        // Calculate the similarity score between the input word and the current word in the dictionary
         const score: number = calculateSimilarity(word, dictWord);
 
-        // If the current word's score is higher than the best score so far, update the best score
         if (score > bestScore) {
             bestScore = score;
-            uniqueMatches.clear(); // Clear the set since we found a new best match
-            uniqueMatches.add(dictWord); // Add the new best match to the set
+            uniqueMatches.clear(); 
+            uniqueMatches.add(dictWord); 
         } else if (score === bestScore) {
-            uniqueMatches.add(dictWord); // Add the word to the set if it has the same score as the best score
+            uniqueMatches.add(dictWord);
         }
     });
 
-    // Convert the set to an array and return the unique best matches
     return Array.from(uniqueMatches);
 }
 
 
-// Function to calculate the similarity score between two words (for example, using Levenshtein distance)
 function calculateSimilarity(word1: string, word2: string): number {
-    // Implementation of similarity calculation (you can replace this with any other similarity metric)
-    // For example, you can use Levenshtein distance, Jaccard similarity, etc.
-    // Here, we use a simple Levenshtein distance implementation
     const m: number = word1.length;
     const n: number = word2.length;
     const dp: number[][] = Array.from(Array(m + 1), () => Array(n + 1).fill(0));
@@ -64,6 +54,6 @@ function calculateSimilarity(word1: string, word2: string): number {
         }
     }
 
-    return 1 / (1 + dp[m][n]); // Return similarity score (inverse of Levenshtein distance)
+    return 1 / (1 + dp[m][n]); 
 }
 
