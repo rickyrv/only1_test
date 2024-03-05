@@ -1,11 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { dictionary } from "../../../_HARDCODED_/dictionary";
 
-interface Result {
-    bestMatch: string | null;
-    score: number;
-}
-
 export async function POST(request: NextRequest, response: NextResponse): Promise<NextResponse> {
     const { inputText }: { inputText: string } = await request.json();
     

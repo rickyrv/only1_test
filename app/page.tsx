@@ -29,7 +29,7 @@ const fetchAutocomplete = async (inputText: string) => {
   }
 }
 
-export default function Home() {
+const Home = () => {
   const [inputText, setInputText] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -104,3 +104,5 @@ export default function Home() {
     </Theme >
   );
 }
+
+export default Home;
