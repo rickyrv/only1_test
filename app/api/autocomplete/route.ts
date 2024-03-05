@@ -7,7 +7,6 @@ interface Result {
 }
 
 export async function POST(request: NextRequest, response: NextResponse): Promise<NextResponse> {
-console.log(dictionary)
     const { inputText }: { inputText: string } = await request.json();
     
     const result = findBestMatches(inputText, dictionary);
